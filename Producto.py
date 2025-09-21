@@ -9,27 +9,14 @@ class Producto:
     # Constructor
     ######################
 
-    def _init_(self, pNombre, pPrecio):
-        self.__nombre = pNombre
-        self.__precio = pPrecio
+    def __init__(self, id, nombre, precio):
+        self.id = id
+        self.nombre = nombre
+        self.precio = precio
 
     ##################################################
     # Metodos
     ##################################################
 
-    _method_= "darNombre"
-    _params_= "ninguno"
-    _returns_= "nombre"
-    _description_= "metodo que permite dar el nombre del producto" 
-    def darNombre(self):
-        #aqui va mi codigo
-        return self.__nombre
-    
-    _method_= "darPrecio"
-    _params_= "ninguno"
-    _returns_= "precio"
-    _description_= "metodo que permite dar el precio del producto" 
-    def darPrecio(self):
-        #aqui va mi codigo
-        return self.__precio
-    
+    def mostrar(self):
+        print(str(self.id) + ". " + self.nombre + " - $" + str(int(self.precio)))
