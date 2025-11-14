@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombre": "Café americano",
+    "precio": 2500
+  },
+  {
+    "id": 2,
+    "nombre": "Café con leche",
+    "precio": 3000
+  },
+  {
+    "id": 3,
+    "nombre": "Croissant",
+    "precio": 4500
+  },
+  {
+    "id": 4,
+    "nombre": "Sandwich jamón y queso",
+    "precio": 6500
+  },
+  {
+    "id": 5,
+    "nombre": "Jugo natural",
+    "precio": 3500
+  },
+  {
+    "id": 6,
+    "nombre": "Empanada",
+    "precio": 2800
+  },
+  {
+    "id": 7,
+    "nombre": "Muffin",
+    "precio": 4000
+  },
+  {
+    "id": 8,
+    "nombre": "Agua",
+    "precio": 1500
+  }
+]

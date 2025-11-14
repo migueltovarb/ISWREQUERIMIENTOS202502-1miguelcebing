@@ -1,0 +1,44 @@
+[
+  {
+    "fecha": "2025-09-21T16:28:52.860228",
+    "items": [
+      {
+        "nombre": "Croissant",
+        "precio": 4500,
+        "cantidad": 1,
+        "subtotal": 4500
+      },
+      {
+        "nombre": "Jugo natural",
+        "precio": 3500,
+        "cantidad": 1,
+        "subtotal": 3500
+      }
+    ],
+    "es_estudiante": true,
+    "subtotal": 8000,
+    "descuento": 800.0,
+    "total": 7200.0
+  },
+  {
+    "fecha": "2025-09-21T17:19:37.298332",
+    "items": [
+      {
+        "nombre": "Muffin",
+        "precio": 4000,
+        "cantidad": 3,
+        "subtotal": 12000
+      },
+      {
+        "nombre": "Agua",
+        "precio": 1500,
+        "cantidad": 1,
+        "subtotal": 1500
+      }
+    ],
+    "es_estudiante": false,
+    "subtotal": 13500,
+    "descuento": 0,
+    "total": 13500
+  }
+]
