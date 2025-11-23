@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-11">
+            <h2 class="mb-4 fw-bold text-center" style="color:#1976d2;">Usuarios registrados</h2>
+            <div class="mb-3 text-end">
+                <a href="{% url 'crear_usuario' %}" class="btn btn-primary fw-bold px-4">Crear Usuario</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped rounded" style="background:rgba(255,255,255,0.98); border-radius:18px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Username</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in usuarios %}
+                        <tr>
+                            <td>{{ u.username }}</td>
+                            <td>{{ u.nombre }}</td>
+                            <td>{{ u.email }}</td>
+                            <td>{{ u.rol }}</td>
+                            <td class="d-flex gap-2">
+                                <a href="{% url 'detalle_usuario' u.pk %}" class="btn btn-primary btn-sm">Ver</a>
+                                <a href="{% url 'editar_usuario' u.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{% url 'cambiar_contrasena' u.pk %}" class="btn btn-info btn-sm">Contraseña</a>
+                                <a href="{% url 'eliminar_usuario' u.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No hay usuarios registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

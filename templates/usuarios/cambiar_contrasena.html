@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0" style="min-width:350px;max-width:420px;">
+        <div class="card-body text-center">
+            <h2 class="mb-4 fw-bold" style="color:#1976d2;">Cambiar Contraseña</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3"><label class="form-label">Nueva contraseña</label> <input name="password" type="password" class="form-control rounded-3" required></div>
+                <button type="submit" class="btn btn-primary w-100 fw-bold rounded-3">Actualizar</button>
+                {% if messages %}
+                  {% for m in messages %}
+                    <div class="alert alert-danger mt-2">{{ m }}</div>
+                  {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

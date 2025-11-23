@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <h2 class="mb-4 fw-bold text-center" style="color:#1976d2;">Historial de Pagos</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped rounded" style="background:rgba(255,255,255,0.97); border-radius:18px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Evento</th>
+                            <th>Monto</th>
+                            <th>Método</th>
+                            <th>Procesado</th>
+                            <th>Fecha</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pago in pagos %}
+                        <tr>
+                            <td>{{ pago.inscripcion.evento.nombre }}</td>
+                            <td class="fw-bold text-success">${{ pago.monto }}</td>
+                            <td>{{ pago.metodo }}</td>
+                            <td>
+                                {% if pago.procesado %}
+                                    <span class="badge bg-success">Sí</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">No</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ pago.fecha_pago|date:"d/m/Y H:i" }}</td>
+                            <td class="d-flex gap-2 flex-wrap">
+                                {% if not pago.procesado %}
+                                    <a href="{% url 'reembolso' pago.pk %}" class="btn btn-warning btn-sm fw-bold" style="border-radius:8px;">Solicitar Reembolso</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">No tienes pagos registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

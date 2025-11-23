@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <h2 class="mb-4 fw-bold text-center" style="color:#1976d2;">Mis Inscripciones</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped rounded" style="background:rgba(255,255,255,0.97); border-radius:18px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Evento</th>
+                            <th>Estado</th>
+                            <th>Pago</th>
+                            <th>Fecha</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for insc in inscripciones %}
+                        <tr>
+                            <td>{{ insc.evento.nombre }}</td>
+                            <td>{{ insc.estado }}</td>
+                            <td>{{ insc.estado_pago }}</td>
+                            <td>{{ insc.fecha_inscripcion|date:"d/m/Y H:i" }}</td>
+                            <td class="d-flex gap-2 flex-wrap">
+                                {% if insc.estado == "inscrito" %}
+                                    <a href="{% url 'cancelar_inscripcion' insc.pk %}" class="btn btn-danger btn-sm fw-bold" style="border-radius:8px;">Cancelar</a>
+                                {% endif %}
+                                {% if insc.estado_pago == "pendiente" %}
+                                    <a href="{% url 'pago_form' insc.pk %}" class="btn btn-primary btn-sm fw-bold" style="border-radius:8px;">Pagar</a>
+                                {% endif %}
+                                {% if insc.estado_pago == "pagado" %}
+                                    <a href="{% url 'descargar_certificado' certificado_id=1 %}" class="btn btn-success btn-sm fw-bold" style="border-radius:8px;">Descargar Certificado</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No tienes inscripciones aún.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

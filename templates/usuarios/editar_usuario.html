@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0" style="min-width:350px;max-width:420px;border-radius:22px;">
+        <div class="card-body">
+            <h2 class="mb-4 text-center fw-bold" style="color:#1976d2;">Editar Usuario</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3"><label class="form-label">Nombre</label> <input name="nombre" type="text" class="form-control rounded-3" value="{{ usuario.nombre }}" required></div>
+                <div class="mb-3"><label class="form-label">Correo</label> <input name="email" type="email" class="form-control rounded-3" value="{{ usuario.email }}" required></div>
+                <div class="mb-3">
+                    <label class="form-label">Rol</label>
+                    <select name="rol" class="form-select rounded-3" required>
+                        <option value="asistente" {% if usuario.rol == "asistente" %}selected{% endif %}>Asistente</option>
+                        <option value="organizador" {% if usuario.rol == "organizador" %}selected{% endif %}>Organizador</option>
+                        <option value="logistica" {% if usuario.rol == "logistica" %}selected{% endif %}>Logística</option>
+                        <option value="administrador" {% if usuario.rol == "administrador" %}selected{% endif %}>Administrador</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 fw-bold rounded-3">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

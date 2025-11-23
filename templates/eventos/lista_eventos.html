@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-11">
+            <h2 class="mb-4 fw-bold text-center" style="color:#1976d2;">Listado de Eventos</h2>
+            {% if user.rol == "organizador" or user.rol == "administrador" %}
+            <div class="mb-3 text-end">
+                <a href="{% url 'crear_evento' %}" class="btn btn-primary fw-bold px-4" style="border-radius:12px; box-shadow:0 2px 8px #2194ed12;">Crear Evento</a>
+            </div>
+            {% endif %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped rounded" style="background:rgba(255,255,255,0.98); border-radius:18px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Cupos</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evento in eventos %}
+                        <tr>
+                            <td>{{ evento.nombre }}</td>
+                            <td>{{ evento.fecha|date:"d/m/Y H:i" }}</td>
+                            <td>{{ evento.estado }}</td>
+                            <td>{{ evento.cupos }}</td>
+                            <td class="d-flex gap-2 flex-wrap">
+                                <a href="{% url 'detalle_evento' evento.pk %}" class="btn btn-primary btn-sm px-3" style="border-radius:9px;">Ver</a>
+                                {% if user.rol == "administrador" %}
+                                    <a href="{% url 'editar_evento' evento.pk %}" class="btn btn-warning btn-sm px-3" style="border-radius:9px;">Editar</a>
+                                    <a href="{% url 'eliminar_evento' evento.pk %}" class="btn btn-danger btn-sm px-3" style="border-radius:9px;"
+                                       onclick="return confirm('¿Seguro que deseas eliminar este evento?');">Eliminar</a>
+                                {% elif user.rol == "organizador" and evento.organizador_id == user.id %}
+                                    <a href="{% url 'editar_evento' evento.pk %}" class="btn btn-warning btn-sm px-3" style="border-radius:9px;">Editar</a>
+                                {% endif %}
+                                <a href="{% url 'inscripcion_form' evento.pk %}" class="btn btn-success btn-sm px-3" style="border-radius:9px;">Inscribirse</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No hay eventos registrados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

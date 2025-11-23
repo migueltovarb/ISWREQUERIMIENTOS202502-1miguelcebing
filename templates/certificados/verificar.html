@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:75vh;">
+    <div class="card shadow-lg border-0"
+         style="background:rgba(255,255,255,0.97); min-width:350px; max-width:470px; border-radius:22px;">
+        <div class="card-header bg-info text-white fw-bold text-center rounded-top" style="font-size:1.28rem; letter-spacing:1px;">
+            Verificación de Certificado
+        </div>
+        <div class="card-body">
+            <form method="get" class="mb-3">
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Código de verificación</label>
+                    <input type="text" class="form-control rounded-3" id="codigo" name="codigo" required value="{{ request.GET.codigo }}">
+                </div>
+                <button type="submit" class="btn btn-info w-100 fw-bold rounded-3">Verificar</button>
+            </form>
+            {% if request.GET.codigo %}
+                {% if valido %}
+                    <div class="alert alert-success text-center mt-3">
+                        Certificado válido para <strong>{{ certificado.inscripcion.usuario.nombre }}</strong><br>
+                        Evento: <strong>{{ certificado.inscripcion.evento.nombre }}</strong>
+                    </div>
+                    <div class="d-grid">
+                        <a href="{{ certificado.pdf.url }}" class="btn btn-primary fw-bold rounded-3" download>
+                            Descargar PDF
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger text-center mt-3">
+                        Certificado no válido o código incorrecto.
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

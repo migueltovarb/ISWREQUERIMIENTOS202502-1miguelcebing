@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0"
+         style="background:rgba(255,255,255,0.98); min-width:350px; max-width:430px; border-radius:22px;">
+        <div class="card-body">
+            <h2 class="mb-4 text-center fw-bold" style="color:#1976d2;">
+                Solicitar Reembolso
+            </h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="monto" class="form-label">Monto a reembolsar</label>
+                    <input type="number" min="0" max="{{ pago.monto }}" step="0.01" class="form-control rounded-3" name="monto" required>
+                </div>
+                <div class="d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-warning w-50 fw-bold" style="border-radius: 10px;">
+                        Solicitar Reembolso
+                    </button>
+                    <a href="{% url 'historial_pagos' %}" class="btn btn-outline-secondary w-50" style="border-radius: 10px;">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

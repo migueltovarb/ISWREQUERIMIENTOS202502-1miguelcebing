@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0" style="min-width:350px; max-width:430px;">
+        <div class="card-body text-center">
+            <h2 class="mb-4 fw-bold" style="color:#dc3545;">Eliminar Evento</h2>
+            <p class="mb-3">¿Seguro que deseas <b>eliminar</b> el evento <b>{{ evento.nombre }}</b>? Esta acción no se puede deshacer.</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger fw-bold px-4">Eliminar</button>
+                <a href="{% url 'lista_eventos' %}" class="btn btn-outline-secondary px-4">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

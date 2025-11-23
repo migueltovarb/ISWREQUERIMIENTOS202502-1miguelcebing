@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0" style="min-width:350px;max-width:420px;border-radius:22px;">
+        <div class="card-body">
+            <h2 class="mb-4 text-center fw-bold" style="color:#1976d2;">Crear Usuario</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3"><label class="form-label">Nombre</label> <input name="nombre" type="text" class="form-control rounded-3" required></div>
+                <div class="mb-3"><label class="form-label">Correo</label> <input name="email" type="email" class="form-control rounded-3" required></div>
+                <div class="mb-3"><label class="form-label">Usuario</label> <input name="username" type="text" class="form-control rounded-3" required></div>
+                <div class="mb-3"><label class="form-label">Contraseña</label> <input name="password" type="password" class="form-control rounded-3" required></div>
+                <div class="mb-3">
+                    <label class="form-label">Rol</label>
+                    <select name="rol" class="form-select rounded-3" required>
+                        <option value="asistente">Asistente</option>
+                        <option value="organizador">Organizador</option>
+                        <option value="logistica">Logística</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 fw-bold rounded-3">Crear</button>
+                {% if messages %}
+                  {% for m in messages %}
+                    <div class="alert alert-danger mt-2">{{ m }}</div>
+                  {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

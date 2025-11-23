@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:74vh;">
+    <div class="card shadow-lg border-0"
+        style="background:rgba(255,255,255,0.97); min-width:340px; max-width:460px; border-radius:22px;">
+        <div class="card-body py-5">
+            <h1 class="mb-3 text-center fw-bold"
+                style="color:#1664b1; letter-spacing:1px;">
+                Bienvenido a la Plataforma<br>de Registro y Control de Eventos
+            </h1>
+            <p class="lead text-center mb-4" style="color:#3683ce;">
+                Gestiona eventos, inscripciones, pagos, certificados y reportes
+                fácilmente en un entorno moderno y confiable.
+            </p>
+            {% if not user.is_authenticated %}
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="{% url 'login' %}" class="btn btn-primary px-4 fw-bold"
+                   style="border-radius:12px; box-shadow:0 2px 8px #1d7fef18;">Ingresar</a>
+                <a href="{% url 'registro' %}" class="btn btn-outline-primary px-4 fw-bold"
+                   style="border-radius:12px;">Registrarse</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

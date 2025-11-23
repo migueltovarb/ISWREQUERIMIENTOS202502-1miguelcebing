@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card shadow-lg border-0" style="background:rgba(255,255,255,0.97); min-width:370px; max-width:500px; border-radius:22px;">
+        <div class="card-body">
+            <h2 class="mb-4 text-center fw-bold" style="color:#1976d2;">Detalle del Evento</h2>
+            <h4 class="mb-3">{{ evento.nombre }}</h4>
+            <p class="mb-2"><strong>Fecha:</strong> {{ evento.fecha|date:"d/m/Y H:i" }}</p>
+            <p class="mb-2"><strong>Estado:</strong> {{ evento.estado }}</p>
+            <p class="mb-2"><strong>Cupos disponibles:</strong> {{ evento.cupos }}</p>
+            <p class="mb-2"><strong>Organizador:</strong>
+                {% if evento.organizador and evento.organizador.nombre %}
+                    {{ evento.organizador.nombre }}
+                {% elif evento.organizador %}
+                    {{ evento.organizador.username }}
+                {% else %}
+                    <span class="text-muted">No asignado</span>
+                {% endif %}
+            </p>
+            <div class="d-flex gap-3">
+                <a href="{% url 'inscripcion_form' evento.pk %}" class="btn btn-primary fw-bold w-50" style="border-radius:11px;">Inscribirse</a>
+                <a href="{% url 'lista_eventos' %}" class="btn btn-outline-secondary w-50" style="border-radius:11px;">Volver al listado</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
